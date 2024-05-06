@@ -30,6 +30,7 @@ function App() {
 		);
 	};
 	useEffect(() => {
+		localStorage.getItem("todos") &&
 		JSON.parse(localStorage.getItem("todos")).length > 0
 			? setTodos(JSON.parse(localStorage.getItem("todos")))
 			: "";

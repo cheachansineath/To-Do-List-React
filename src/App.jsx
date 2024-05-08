@@ -40,19 +40,21 @@ function App() {
 		localStorage.setItem("todos", JSON.stringify(todos));
 	}, [todos]);
 
+	document.querySelector("html").classList.add("light");
+
 	return (
 		<TodoProvider
 			value={{ todos, addTodo, deleteTodo, updateTodo, toggleTodo }}
 		>
-			<div className="bg-[#172842] min-h-screen py-8">
-				<div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
-					<h1 className="text-2xl font-bold text-center mb-8 mt-2">
+			<div className="flex justify-center min-h-screen py-8 bg-gray-200 dark:bg-gray-800/90 duration-150">
+				<div className="max-w-2xl w-full m-4 p-8 rounded-lg shadow-md bg-white dark:bg-gray-900 dark:text-white">
+					<h1 className="text-3xl font-semibold text-center mb-6">
 						Manage Your Todos
 					</h1>
 					<div className="mb-4">
 						<TodoForm />
 					</div>
-					<div className="flex flex-wrap gap-y-3">
+					<div className="flex flex-col gap-y-3">
 						{todos.map((todo) => (
 							<TodoItem key={todo.id} todo={todo} />
 						))}

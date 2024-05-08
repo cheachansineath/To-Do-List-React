@@ -35,6 +35,9 @@ function TodoItem({ todo }) {
 				onChange={(e) => {
 					setTodoContent(e.target.value);
 				}}
+				onKeyDown={(e) => {
+					e.key == "Enter" ? setIsTodoEditable(false) : "";
+				}}
 			/>
 
 			<button

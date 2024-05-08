@@ -46,15 +46,18 @@ function App() {
 		<TodoProvider
 			value={{ todos, addTodo, deleteTodo, updateTodo, toggleTodo }}
 		>
-			<div data-theme="dark" className="flex justify-center min-h-screen py-8 bg-gray-200 dark:bg-gray-800/90 duration-150">
-				<div className="max-w-2xl w-full m-4 p-8 rounded-lg shadow-md bg-white dark:bg-gray-900 dark:text-white">
+			<div
+				data-theme="dark"
+				className=" flex justify-center min-h-screen no-scrollbar py-8 bg-gray-200 dark:bg-gray-800/90 duration-150"
+			>
+				<div className="h-full max-w-2xl w-full m-4 p-8 rounded-lg shadow-md bg-white dark:bg-gray-900 dark:text-white">
 					<h1 className="text-3xl font-semibold text-center mb-6">
 						Manage Your Todos
 					</h1>
 					<div className="mb-4">
 						<TodoForm />
 					</div>
-					<div className="flex flex-col gap-y-3">
+					<div className="flex flex-col gap-y-3 overflow-y-scroll no-scrollbar">
 						{todos.map((todo) => (
 							<TodoItem key={todo.id} todo={todo} />
 						))}

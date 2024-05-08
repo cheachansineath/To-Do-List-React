@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useTodo } from "./contexts/Todo";
+import editIcon from "/edit.svg";
+import saveIcon from "/save.svg";
+import deleteIcon from "/delete.svg";
 
 function TodoItem({ todo }) {
 	const [isTodoEditable, setIsTodoEditable] = useState(false);
@@ -27,8 +30,12 @@ function TodoItem({ todo }) {
 			/>
 			<input
 				type="text"
-				className={`border outline-none w-full bg-transparent rounded-lg pl-1
-				${isTodoEditable ? "border-black/10 px-2" : "border-transparent"}
+				className={`border outline-none w-full bg-transparent rounded-lg ml-1 py-1
+				${
+					isTodoEditable
+						? "border-black/10 dark:border-white pl-2"
+						: "border-transparent"
+				}
 				${todo.checked ? "line-through" : ""}`}
 				value={todoContent}
 				readOnly={!isTodoEditable}
@@ -41,7 +48,7 @@ function TodoItem({ todo }) {
 			/>
 
 			<button
-				className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0 disabled:opacity-50"
+				className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-zinc-300 hover:bg-zinc-100 shrink-0 disabled:opacity-50"
 				onClick={() => {
 					if (todo.completed) return;
 
@@ -51,13 +58,25 @@ function TodoItem({ todo }) {
 				}}
 				disabled={todo.checked}
 			>
-				{isTodoEditable ? "📁" : "✏️"}
+				{isTodoEditable ? (
+					<img
+						src={saveIcon}
+						alt="Edit the TODO"
+						className={`w-4 h-4`}
+					/>
+				) : (
+					<img
+						src={editIcon}
+						alt="Edit the TODO"
+						className={`w-4 h-4`}
+					/>
+				)}
 			</button>
 			<button
-				className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0"
+				className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center  bg-zinc-300 hover:bg-zinc-100 shrink-0"
 				onClick={() => deleteTodo(todo.id)}
 			>
-				❌
+				<img className="w-4 h-4" src={deleteIcon} alt="Delete TODO" />
 			</button>
 		</div>
 	);

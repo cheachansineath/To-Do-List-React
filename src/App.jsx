@@ -46,7 +46,7 @@ function App() {
 		<TodoProvider
 			value={{ todos, addTodo, deleteTodo, updateTodo, toggleTodo }}
 		>
-			<div className="flex justify-center min-h-screen py-8 bg-gray-200 dark:bg-gray-800/90 duration-150">
+			<div data-theme="dark" className="flex justify-center min-h-screen py-8 bg-gray-200 dark:bg-gray-800/90 duration-150">
 				<div className="max-w-2xl w-full m-4 p-8 rounded-lg shadow-md bg-white dark:bg-gray-900 dark:text-white">
 					<h1 className="text-3xl font-semibold text-center mb-6">
 						Manage Your Todos

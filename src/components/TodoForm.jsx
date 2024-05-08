@@ -8,16 +8,16 @@ function TodoForm() {
 	const [content, setContent] = useState("");
 
 	return (
-		<form className="flex">
+		<form className="flex join">
 			<input
 				type="text"
 				placeholder="Write Your Todo..."
-				className="w-full border border-black/5 rounded-l-lg px-4 outline-none duration-150 bg-white/20 py-2"
+				className="join-item w-full px-4 outline-none bg-gray-700 py-2"
 				value={content}
 				onChange={(e) => setContent(e.target.value)}
 			/>
 			<button
-				className="rounded-r-lg px-3 shrink-0 items-center bg-green-600 text-white "
+				className="join-item px-3 shrink-0 bg-emerald-600"
 				onClick={(e) => {
 					e.preventDefault();
 					content !== "" ? addTodo(content) : "";

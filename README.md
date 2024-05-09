@@ -1,8 +1,29 @@
-# React + Vite
+# React To-Do List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Todo Sphere** is a simple To-Do List application built with React. It allows users to create, update, and delete tasks.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   Add new tasks
+-   Mark tasks as completed
+-   Edit existing tasks
+-   Delete tasks
+
+## Installation
+
+1. Clone the repository: `git clone https://github.com/rahulpoonia29/To-Do-List-React`
+2. Navigate to the project directory: `cd directory`
+3. Install the dependencies: `npm install`
+
+## Usage
+
+1. Start the development server: `npm run dev`
+2. Open your browser and visit `http://localhost:5173`
+
+## Contributing
+
+Contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

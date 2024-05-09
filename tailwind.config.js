@@ -7,6 +7,6 @@ export default {
 	// darkMode: "class",
 	plugins: [require("daisyui")],
 	daisyui: {
-		themes: ["light", "dark", "cupcake", "cyberpunk"],
+		themes: ["light", "dark", "cupcake", "cyberpunk", "night"],
 	},
 };

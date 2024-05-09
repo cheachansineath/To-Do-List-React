@@ -33,8 +33,8 @@ function TodoItem({ todo }) {
 				className={`border outline-none w-full bg-transparent rounded-lg ml-1 py-1
 				${
 					isTodoEditable
-						? "border-black/10 dark:border-white pl-2"
-						: "border-transparent"
+						? "border-black/10 dark:border-white pl-2 cursor-text"
+						: "border-transparent cursor-pointer"
 				}
 				${todo.checked ? "line-through" : ""}`}
 				value={todoContent}

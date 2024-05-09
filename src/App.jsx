@@ -25,7 +25,6 @@ function App() {
 					: todo
 			)
 		);
-		console.log(todos);
 	};
 	const toggleTodo = (id) => {
 		setTodos((prev) =>

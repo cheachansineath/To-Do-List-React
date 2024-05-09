@@ -10,7 +10,7 @@ function TodoItem({ todo }) {
 	const { deleteTodo, updateTodo, toggleTodo } = useTodo();
 
 	const editTodo = () => {
-		todo.content = todoContent;
+		updateTodo(todoContent, todo.id);
 		setIsTodoEditable(false);
 	};
 
@@ -43,7 +43,7 @@ function TodoItem({ todo }) {
 					setTodoContent(e.target.value);
 				}}
 				onKeyDown={(e) => {
-					e.key == "Enter" ? setIsTodoEditable(false) : "";
+					e.key == "Enter" ? editTodo() : "";
 				}}
 			/>
 
@@ -54,7 +54,6 @@ function TodoItem({ todo }) {
 
 					if (isTodoEditable) {
 						editTodo();
-						console.log("Edit the TODO");
 					} else setIsTodoEditable((prev) => !prev);
 				}}
 				disabled={todo.checked}

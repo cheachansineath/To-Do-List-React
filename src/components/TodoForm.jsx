@@ -11,7 +11,7 @@ function TodoForm() {
 			<div className="flex gap-2 w-full">
 				<input
 					type="text"
-					placeholder="Type here"
+					placeholder="What needs to be done?"
 					className="input input-bordered grow"
 					value={content}
 					onChange={(e) => {

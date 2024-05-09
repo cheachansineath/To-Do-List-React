@@ -75,7 +75,7 @@ function App() {
 					<div className="flex gap-2 w-full">
 						<input
 							type="text"
-							placeholder="Type here"
+							placeholder="Search your todos"
 							className="input input-bordered grow"
 							value={searchString}
 							onChange={(e) => {
@@ -147,7 +147,15 @@ function App() {
 								</li>
 							</ul>
 						</div>
-						<div className="btn btn-error">Delete All</div>
+						<div
+							className="btn btn-error"
+							onClick={(e) => {
+								e.preventDefault();
+								setTodos([]);
+							}}
+						>
+							Delete All
+						</div>
 					</div>
 					<div className="flex flex-col gap-y-3 overflow-y-scroll no-scrollbar">
 						{filteredTodos.map((todo) => (

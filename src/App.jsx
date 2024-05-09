@@ -68,7 +68,7 @@ function App() {
 					<div className="mb-4">
 						<TodoForm />
 					</div>
-					<label className="input input-bordered flex items-center gap-2 mb-4">
+					<label className="input input-bordered flex items-center gap-2 mb-3">
 						<input
 							type="text"
 							className="grow"
@@ -91,6 +91,53 @@ function App() {
 							/>
 						</svg>
 					</label>
+					<div className="dropdown mb-3">
+						<div
+							tabIndex={0}
+							role="button"
+							className="btn btn-info px-5"
+						>
+							Filter
+						</div>
+						<ul
+							tabIndex={0}
+							className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-40"
+						>
+							<li>
+								<a
+									onClick={(e) => {
+										setFilteredTodos(todos);
+									}}
+								>
+									All
+								</a>
+							</li>
+							<li>
+								<a
+									onClick={(e) => {
+										setFilteredTodos(
+											todos.filter(
+												(todo) => !todo.checked
+											)
+										);
+									}}
+								>
+									Pending
+								</a>
+							</li>
+							<li>
+								<a
+									onClick={(e) => {
+										setFilteredTodos(
+											todos.filter((todo) => todo.checked)
+										);
+									}}
+								>
+									Completed
+								</a>
+							</li>
+						</ul>
+					</div>
 					<div className="flex flex-col gap-y-3 overflow-y-scroll no-scrollbar">
 						{filteredTodos.map((todo) => (
 							<TodoItem key={todo.id} todo={todo} />

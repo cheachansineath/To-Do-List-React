@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import TodoForm from "./components/TodoForm";
 import { TodoProvider } from "./components/contexts/Todo";
 import TodoItem from "./components/TodoItem";
 
 function App() {
 	const [todos, setTodos] = useState([]);
+	const [filteredTodos, setFilteredTodos] = useState(todos);
+	const [searchString, setSearchString] = useState("");
 
 	const addTodo = (content) => {
 		setTodos((prev) => [
@@ -18,9 +20,12 @@ function App() {
 	const updateTodo = (content, id) => {
 		setTodos((prev) =>
 			prev.map((todo) =>
-				todo.id === id ? { id: todo.id, content, checked: false } : todo
+				todo.id === id
+					? { id: todo.id, content, checked: todo.checked }
+					: todo
 			)
 		);
+		console.log(todos);
 	};
 	const toggleTodo = (id) => {
 		setTodos((prev) =>
@@ -40,8 +45,15 @@ function App() {
 		localStorage.setItem("todos", JSON.stringify(todos));
 	}, [todos]);
 
-	document.querySelector("html").classList.add("light");
+	useEffect(() => {
+		searchString == ""
+			? setFilteredTodos(todos)
+			: setFilteredTodos(
+					todos.filter((todo) => todo.content.includes(searchString))
+			  );
+	}, [searchString, todos]);
 
+	document.querySelector("html").classList.add("light");
 	return (
 		<TodoProvider
 			value={{ todos, addTodo, deleteTodo, updateTodo, toggleTodo }}
@@ -57,8 +69,31 @@ function App() {
 					<div className="mb-4">
 						<TodoForm />
 					</div>
+					<label className="input input-bordered flex items-center gap-2 mb-4">
+						<input
+							type="text"
+							className="grow"
+							placeholder="Search"
+							value={searchString}
+							onChange={(e) => {
+								setSearchString(e.target.value);
+							}}
+						/>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 16 16"
+							fill="currentColor"
+							className="w-4 h-4 opacity-70"
+						>
+							<path
+								fillRule="evenodd"
+								d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+								clipRule="evenodd"
+							/>
+						</svg>
+					</label>
 					<div className="flex flex-col gap-y-3 overflow-y-scroll no-scrollbar">
-						{todos.map((todo) => (
+						{filteredTodos.map((todo) => (
 							<TodoItem key={todo.id} todo={todo} />
 						))}
 					</div>

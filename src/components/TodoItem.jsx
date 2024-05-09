@@ -54,6 +54,7 @@ function TodoItem({ todo }) {
 
 					if (isTodoEditable) {
 						editTodo();
+						console.log("Edit the TODO");
 					} else setIsTodoEditable((prev) => !prev);
 				}}
 				disabled={todo.checked}

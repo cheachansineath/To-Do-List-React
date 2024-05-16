@@ -62,11 +62,12 @@ function App() {
 			value={{ todos, addTodo, deleteTodo, updateTodo, toggleTodo }}
 		>
 			<div
-				data-theme="dark"
-				className=" flex justify-center min-h-screen no-scrollbar py-8  bg-gray-200 dark:bg-gray-800/90 duration-150"
+				// data-theme="cyberpunk"
+				data-theme="night"
+				className=" flex justify-center min-h-screen no-scrollbar py-8 bg-gray-700 duration-150"
 			>
-				<div className="h-full max-w-2xl w-full m-4 p-8 rounded-lg shadow-md bg-white dark:bg-gray-900 dark:text-white">
-					<h1 className="text-3xl font-semibold text-center mb-6">
+				<div className="h-full max-w-2xl w-full m-4 p-8 rounded-lg shadow-lg bg-base-300 text-neutral-content">
+					<h1 className="text-3xl font-semibold text-center mb-6 text-base-content">
 						Manage Your Todos
 					</h1>
 					<div className="mb-3">
@@ -76,7 +77,7 @@ function App() {
 						<input
 							type="text"
 							placeholder="Search your todos"
-							className="input input-bordered grow"
+							className="input input-bordered grow bg-base-100 text-base-content"
 							value={searchString}
 							onChange={(e) => {
 								setSearchString(e.target.value);
@@ -102,13 +103,13 @@ function App() {
 							<div
 								tabIndex={0}
 								role="button"
-								className="btn btn-info px-5"
+								className="btn btn-info px-5 text-info-content"
 							>
 								Filter
 							</div>
 							<ul
 								tabIndex={0}
-								className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-40"
+								className="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box w-40 [&>li]:text-base-content"
 							>
 								<li>
 									<a

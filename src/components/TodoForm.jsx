@@ -8,11 +8,11 @@ function TodoForm() {
 
 	return (
 		<>
-			<div className="flex gap-2 w-full">
+			<div className="flex gap-2 w-full ">
 				<input
 					type="text"
 					placeholder="What needs to be done?"
-					className="input input-bordered grow"
+					className="input input-bordered grow bg-base-100 text-base-content"
 					value={content}
 					onChange={(e) => {
 						setContent(e.target.value);

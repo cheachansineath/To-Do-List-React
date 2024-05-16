@@ -45,18 +45,18 @@ function TodoBody({ todos, setTodos }) {
 					</svg>
 				</button>
 			</div>
-			<div className="flex items-center justify-between mb-3">
+			<div className="grid grid-cols-2 gap-3 md:flex md:flex-wrap items-center justify-between mb-3">
 				<div className="dropdown">
 					<div
 						tabIndex={0}
 						role="button"
-						className="btn btn-info px-5 text-info-content mb-2"
+						className="btn btn-info px-5 text-info-content w-full"
 					>
 						Filter
 					</div>
 					<ul
 						tabIndex={0}
-						className="dropdown-content z-[1] menu p-2 shadow-md bg-base-100 rounded-box w-40 [&>li]:text-base-content"
+						className="dropdown-content z-[1] menu p-2 mt-2 shadow-md bg-base-100 rounded-box w-40 [&>li]:text-base-content"
 					>
 						<li>
 							<a
@@ -91,6 +91,7 @@ function TodoBody({ todos, setTodos }) {
 						</li>
 					</ul>
 				</div>
+				<Themes />
 				<div
 					className="btn btn-info"
 					onClick={async (e) => {
@@ -104,7 +105,6 @@ function TodoBody({ todos, setTodos }) {
 				>
 					Share
 				</div>
-				<Themes />
 				<div
 					className="btn btn-error"
 					onClick={(e) => {

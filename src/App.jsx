@@ -1,178 +1,27 @@
-import { useEffect, useMemo, useState } from "react";
-import TodoForm from "./components/TodoForm";
-import { TodoProvider } from "./contexts/Todo";
-import TodoItem from "./components/TodoItem";
-import Themes from "./components/Themes";
+import { useEffect, useState } from "react";
+import {
+	Navigate,
+	Outlet,
+	Route,
+	RouterProvider,
+	createBrowserRouter,
+	createRoutesFromElements,
+} from "react-router-dom";
+import Todos from "./components/Todos";
+import Share from "./components/Share";
 
 function App() {
-	const [todos, setTodos] = useState([]);
-	const [filteredTodos, setFilteredTodos] = useState(todos);
-	const [searchString, setSearchString] = useState("");
-
-	const addTodo = (content) => {
-		setTodos((prev) => [
-			{ id: Date.now(), content, checked: false },
-			...prev,
-		]);
-	};
-	const deleteTodo = (id) => {
-		setTodos((prev) => prev.filter((todo) => todo.id !== id));
-	};
-	const updateTodo = (content, id) => {
-		setTodos((prev) =>
-			prev.map((todo) =>
-				todo.id === id
-					? { id: todo.id, content, checked: todo.checked }
-					: todo
-			)
-		);
-	};
-	const toggleTodo = (id) => {
-		setTodos((prev) =>
-			prev.map((todo) =>
-				todo.id === id ? { ...todo, checked: !todo.checked } : todo
-			)
-		);
-	};
-
-	useEffect(() => {
-		localStorage.getItem("theme") &&
-			document.documentElement.setAttribute(
-				"data-theme",
-				localStorage.getItem("theme")
-			);
-	});
-
-	useEffect(() => {
-		localStorage.getItem("todos") &&
-		JSON.parse(localStorage.getItem("todos")).length > 0
-			? setTodos(JSON.parse(localStorage.getItem("todos")))
-			: "";
-	}, []);
-
-	useEffect(() => {
-		localStorage.setItem("todos", JSON.stringify(todos));
-	}, [todos]);
-
-	useMemo(() => {
-		searchString == ""
-			? setFilteredTodos(todos)
-			: setFilteredTodos(
-					todos.filter((todo) =>
-						todo.content
-							.toLowerCase()
-							.includes(searchString.toLowerCase())
-					)
-			  );
-	}, [searchString, todos]);
-
-	return (
-		<TodoProvider
-			value={{ todos, addTodo, deleteTodo, updateTodo, toggleTodo }}
-		>
-			<div className="flex justify-center min-h-screen no-scrollbar py-8 bg-gray-700 duration-250">
-				<div className="h-full max-w-2xl w-full m-4 p-8 rounded-lg shadow-lg bg-base-300 text-neutral-content">
-					<h1 className="text-3xl font-semibold text-center mb-6 text-base-content">
-						Manage Your Todos
-					</h1>
-					<div className="mb-3">
-						<TodoForm />
-					</div>
-					<div className="flex gap-2 w-full">
-						<input
-							type="text"
-							placeholder="Search your todos"
-							className="input input-bordered grow bg-base-100 text-base-content"
-							value={searchString}
-							onChange={(e) => {
-								setSearchString(e.target.value);
-							}}
-						/>
-						<button className="btn btn-primary mb-3">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 16 16"
-								fill="currentColor"
-								className="w-4"
-							>
-								<path
-									fillRule="evenodd"
-									d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-									clipRule="evenodd"
-								/>
-							</svg>
-						</button>
-					</div>
-					<div className="flex items-center justify-between mb-3">
-						<div className="dropdown">
-							<div
-								tabIndex={0}
-								role="button"
-								className="btn btn-info px-5 text-info-content mb-2"
-							>
-								Filter
-							</div>
-							<ul
-								tabIndex={0}
-								className="dropdown-content z-[1] menu p-2 shadow-md bg-base-100 rounded-box w-40 [&>li]:text-base-content"
-							>
-								<li>
-									<a
-										onClick={(e) => {
-											setFilteredTodos(todos);
-										}}
-									>
-										All
-									</a>
-								</li>
-								<li>
-									<a
-										onClick={(e) => {
-											setFilteredTodos(
-												todos.filter(
-													(todo) => !todo.checked
-												)
-											);
-										}}
-									>
-										Pending
-									</a>
-								</li>
-								<li>
-									<a
-										onClick={(e) => {
-											setFilteredTodos(
-												todos.filter(
-													(todo) => todo.checked
-												)
-											);
-										}}
-									>
-										Completed
-									</a>
-								</li>
-							</ul>
-						</div>
-						<Themes />
-						<div
-							className="btn btn-error"
-							onClick={(e) => {
-								e.preventDefault();
-								setTodos([]);
-							}}
-						>
-							Delete All
-						</div>
-					</div>
-					<div className="flex flex-col gap-y-3 overflow-y-scroll no-scrollbar">
-						{filteredTodos.map((todo) => (
-							<TodoItem key={todo.id} todo={todo} />
-						))}
-					</div>
-				</div>
-			</div>
-		</TodoProvider>
+	const router = createBrowserRouter(
+		createRoutesFromElements(
+			<Route path="/" element={<Outlet />}>
+				<Route path="" element={<Navigate to="todos" />} />
+				<Route path="todos" element={<Todos />} />
+				<Route path="share" element={<Share />} />
+			</Route>
+		)
 	);
+
+	return <RouterProvider router={router} />;
 }
 
 export default App;

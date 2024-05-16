@@ -7,7 +7,7 @@ function TodoForm() {
 
 	return (
 		<>
-			<div className="flex gap-2 w-full ">
+			<div className="flex gap-2 w-full mb-3">
 				<input
 					type="text"
 					placeholder="What needs to be done?"

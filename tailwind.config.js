@@ -1,3 +1,5 @@
+import constants from "./src/constants";
+
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -7,6 +9,6 @@ export default {
 	// darkMode: "class",
 	plugins: [require("daisyui")],
 	daisyui: {
-		themes: ["light", "dark", "cupcake", "cyberpunk", "night"],
+		themes: constants.themes,
 	},
 };

@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import TodoForm from "./components/TodoForm";
-import { TodoProvider } from "./components/contexts/Todo";
+import { TodoProvider } from "./contexts/Todo";
 import TodoItem from "./components/TodoItem";
+import Themes from "./components/Themes";
 
 function App() {
 	const [todos, setTodos] = useState([]);
@@ -56,16 +57,11 @@ function App() {
 			  );
 	}, [searchString, todos]);
 
-	document.querySelector("html").classList.add("cupcake");
 	return (
 		<TodoProvider
 			value={{ todos, addTodo, deleteTodo, updateTodo, toggleTodo }}
 		>
-			<div
-				// data-theme="cyberpunk"
-				data-theme="night"
-				className=" flex justify-center min-h-screen no-scrollbar py-8 bg-gray-700 duration-150"
-			>
+			<div className="flex justify-center min-h-screen no-scrollbar py-8 bg-gray-700 duration-250">
 				<div className="h-full max-w-2xl w-full m-4 p-8 rounded-lg shadow-lg bg-base-300 text-neutral-content">
 					<h1 className="text-3xl font-semibold text-center mb-6 text-base-content">
 						Manage Your Todos
@@ -109,7 +105,7 @@ function App() {
 							</div>
 							<ul
 								tabIndex={0}
-								className="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box w-40 [&>li]:text-base-content"
+								className="dropdown-content z-[1] menu p-2 shadow-md bg-base-100 rounded-box w-40 [&>li]:text-base-content"
 							>
 								<li>
 									<a
@@ -148,6 +144,7 @@ function App() {
 								</li>
 							</ul>
 						</div>
+						<Themes />
 						<div
 							className="btn btn-error"
 							onClick={(e) => {

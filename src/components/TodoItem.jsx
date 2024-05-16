@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useTodo } from "./contexts/Todo";
+import { useTodo } from "../contexts/Todo";
 import editIcon from "/edit.svg";
 
 function TodoItem({ todo }) {
@@ -14,7 +14,7 @@ function TodoItem({ todo }) {
 
 	return (
 		<div
-			className={`flex items-center rounded-lg px-3 py-1.5 gap-x-3 duration-300 text-black 
+			className={`join flex items-center px-3 py-1.5 gap-x-3 duration-300 text-black 
 			${
 				todo.checked
 					? "bg-success text-success-content"
@@ -28,7 +28,7 @@ function TodoItem({ todo }) {
 				checked={todo.checked}
 				onChange={() => {
 					toggleTodo(todo.id);
-					setIsTodoEditable(false)
+					setIsTodoEditable(false);
 				}}
 			/>
 			<input

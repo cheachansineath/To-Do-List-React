@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useTodo } from "./contexts/Todo";
+import { useTodo } from "../contexts/Todo";
 import checkSign from "/check.svg";
 
 function TodoForm() {

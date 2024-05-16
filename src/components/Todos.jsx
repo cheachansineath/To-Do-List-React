@@ -38,7 +38,7 @@ function Todos() {
 				"data-theme",
 				localStorage.getItem("theme")
 			);
-	});
+	}, []);
 
 	useEffect(() => {
 		localStorage.getItem("todos") &&
@@ -55,14 +55,12 @@ function Todos() {
 		<TodoProvider
 			value={{ todos, addTodo, deleteTodo, updateTodo, toggleTodo }}
 		>
-			<div className="flex justify-center min-h-screen no-scrollbar py-8 bg-gray-700 duration-250">
-				<div className="h-full max-w-2xl w-full m-4 p-8 rounded-lg shadow-lg bg-base-300 text-neutral-content">
-					<div className="text-3xl font-semibold text-center mb-6 text-base-content">
-						Manage Your Todos
-					</div>
-					<TodoForm />
-					<TodoBody todos={todos} setTodos={setTodos} />
+			<div className="h-full max-w-2xl w-full m-4 p-8 rounded-lg shadow-lg bg-base-300 text-neutral-content">
+				<div className="text-3xl font-semibold text-center mb-6 text-base-content">
+					Manage Your Todos
 				</div>
+				<TodoForm />
+				<TodoBody todos={todos} setTodos={setTodos} />
 			</div>
 		</TodoProvider>
 	);

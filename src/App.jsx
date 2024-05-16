@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
 	Navigate,
 	Outlet,
@@ -13,7 +12,14 @@ import Share from "./components/Share";
 function App() {
 	const router = createBrowserRouter(
 		createRoutesFromElements(
-			<Route path="/" element={<Outlet />}>
+			<Route
+				path="/"
+				element={
+					<div className="flex justify-center h-full min-h-screen no-scrollbar py-8 bg-gray-700 duration-250">
+						<Outlet />
+					</div>
+				}
+			>
 				<Route path="" element={<Navigate to="todos" />} />
 				<Route path="todos" element={<Todos />} />
 				<Route path="share" element={<Share />} />

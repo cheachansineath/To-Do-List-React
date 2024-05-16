@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useTodo } from "../contexts/Todo";
-import editIcon from "/edit.svg";
 
 function TodoItem({ todo }) {
 	const [isTodoEditable, setIsTodoEditable] = useState(false);

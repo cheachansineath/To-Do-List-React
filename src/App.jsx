@@ -34,6 +34,15 @@ function App() {
 			)
 		);
 	};
+
+	useEffect(() => {
+		localStorage.getItem("theme") &&
+			document.documentElement.setAttribute(
+				"data-theme",
+				localStorage.getItem("theme")
+			);
+	});
+
 	useEffect(() => {
 		localStorage.getItem("todos") &&
 		JSON.parse(localStorage.getItem("todos")).length > 0
@@ -45,7 +54,7 @@ function App() {
 		localStorage.setItem("todos", JSON.stringify(todos));
 	}, [todos]);
 
-	useEffect(() => {
+	useMemo(() => {
 		searchString == ""
 			? setFilteredTodos(todos)
 			: setFilteredTodos(
@@ -99,7 +108,7 @@ function App() {
 							<div
 								tabIndex={0}
 								role="button"
-								className="btn btn-info px-5 text-info-content"
+								className="btn btn-info px-5 text-info-content mb-2"
 							>
 								Filter
 							</div>

@@ -1,4 +1,4 @@
-import React, { useState, useMemo,useEffect } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import Themes from "./Themes";
 import TodoItem from "./TodoItem";
@@ -13,7 +13,7 @@ function Share() {
 		localStorage.getItem("theme") &&
 			document.documentElement.setAttribute(
 				"data-theme",
-				localStorage.getItem("theme")
+				localStorage.getItem("theme"),
 			);
 	});
 
@@ -24,21 +24,21 @@ function Share() {
 					todos.filter((todo) =>
 						todo.content
 							.toLowerCase()
-							.includes(searchString.toLowerCase())
-					)
-			  );
+							.includes(searchString.toLowerCase()),
+					),
+				);
 	}, [searchString]);
 
 	return (
-		<div className="h-full max-w-2xl w-full m-4 p-8 rounded-lg shadow-lg bg-base-300 text-neutral-content">
-			<div className="text-3xl font-semibold text-center mb-6 text-base-content">
+		<div className="bg-base-300 text-neutral-content m-4 h-full w-full max-w-2xl rounded-lg p-8 shadow-lg">
+			<div className="text-base-content mb-6 text-center text-3xl font-semibold">
 				Todos Shared with you
 			</div>
-			<div className="flex gap-2 w-full">
+			<div className="flex w-full gap-2">
 				<input
 					type="text"
 					placeholder="Search your todos"
-					className="input input-bordered grow bg-base-100 text-base-content"
+					className="input input-bordered bg-base-100 text-base-content grow"
 					value={searchString}
 					onChange={(e) => {
 						setSearchString(e.target.value);
@@ -59,18 +59,18 @@ function Share() {
 					</svg>
 				</button>
 			</div>
-			<div className="grid grid-cols-2 gap-3 sm:flex items-center justify-between mb-3">
+			<div className="mb-3 grid grid-cols-2 items-center justify-between gap-3 sm:flex">
 				<div className="dropdown">
 					<div
 						tabIndex={0}
 						role="button"
-						className="btn btn-info px-5 text-info-content w-full"
+						className="btn btn-info text-info-content w-full px-5"
 					>
 						Filter
 					</div>
 					<ul
 						tabIndex={0}
-						className="dropdown-content z-[1] menu p-2 mt-2 shadow-md bg-base-100 rounded-box w-40 [&>li]:text-base-content"
+						className="dropdown-content menu bg-base-100 rounded-box [&>li]:text-base-content z-[1] mt-2 w-40 p-2 shadow-md"
 					>
 						<li>
 							<a
@@ -85,7 +85,7 @@ function Share() {
 							<a
 								onClick={(e) => {
 									setFilteredTodos(
-										todos.filter((todo) => !todo.checked)
+										todos.filter((todo) => !todo.checked),
 									);
 								}}
 							>
@@ -96,7 +96,7 @@ function Share() {
 							<a
 								onClick={(e) => {
 									setFilteredTodos(
-										todos.filter((todo) => todo.checked)
+										todos.filter((todo) => todo.checked),
 									);
 								}}
 							>
@@ -107,9 +107,9 @@ function Share() {
 				</div>
 				<Themes />
 			</div>
-			<div className="flex flex-col gap-y-3 overflow-y-scroll no-scrollbar">
+			<div className="no-scrollbar flex flex-col gap-y-3 overflow-y-scroll">
 				{filteredTodos.map((todo) => (
-					<TodoItem key={todo.id} todo={todo} showOptions={false}/>
+					<TodoItem key={todo.id} todo={todo} showOptions={false} />
 				))}
 			</div>
 		</div>

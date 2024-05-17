@@ -11,13 +11,13 @@ function Themes() {
 			<div
 				tabIndex={0}
 				role="button"
-				className="btn btn-accent px-5 text-accent-content  w-full"
+				className="btn btn-accent text-accent-content w-full  px-5"
 			>
 				Themes
 			</div>
 			<ul
 				tabIndex={0}
-				className="w-40 dropdown-content z-[1] menu p-2 mt-2 shadow-md bg-base-100 rounded-box [&>li]:text-base-content"
+				className="dropdown-content menu bg-base-100 rounded-box [&>li]:text-base-content z-[1] mt-2 w-40 p-2 shadow-md"
 			>
 				{themes.map((theme, key) => (
 					<li key={key} className="mb-2">

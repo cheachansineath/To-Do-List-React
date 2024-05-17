@@ -20,15 +20,15 @@ function Todos() {
 			prev.map((todo) =>
 				todo.id === id
 					? { id: todo.id, content, checked: todo.checked }
-					: todo
-			)
+					: todo,
+			),
 		);
 	};
 	const toggleTodo = (id) => {
 		setTodos((prev) =>
 			prev.map((todo) =>
-				todo.id === id ? { ...todo, checked: !todo.checked } : todo
-			)
+				todo.id === id ? { ...todo, checked: !todo.checked } : todo,
+			),
 		);
 	};
 
@@ -36,7 +36,7 @@ function Todos() {
 		localStorage.getItem("theme") &&
 			document.documentElement.setAttribute(
 				"data-theme",
-				localStorage.getItem("theme")
+				localStorage.getItem("theme"),
 			);
 	}, []);
 
@@ -55,8 +55,8 @@ function Todos() {
 		<TodoProvider
 			value={{ todos, addTodo, deleteTodo, updateTodo, toggleTodo }}
 		>
-			<div className="h-full max-w-2xl w-full m-4 p-8 rounded-lg shadow-lg bg-base-300 text-neutral-content">
-				<div className="text-3xl font-semibold text-center mb-6 text-base-content">
+			<div className="bg-base-300 text-neutral-content m-4 h-full w-full max-w-2xl rounded-lg p-8 shadow-lg">
+				<div className="text-base-content mb-6 text-center text-3xl font-semibold">
 					Manage Your Todos
 				</div>
 				<TodoForm />

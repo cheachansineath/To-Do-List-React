@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 import Todos from "./components/Todos";
 import Share from "./components/Share";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 	const router = createBrowserRouter(
@@ -15,7 +17,8 @@ function App() {
 			<Route
 				path="/"
 				element={
-					<div className="flex justify-center h-full min-h-screen no-scrollbar py-8 bg-gray-700 duration-250">
+					<div className="no-scrollbar duration-250 flex h-full min-h-screen justify-center bg-gray-700 py-8">
+						<ToastContainer />
 						<Outlet />
 					</div>
 				}
@@ -23,8 +26,8 @@ function App() {
 				<Route path="" element={<Navigate to="todos" />} />
 				<Route path="todos" element={<Todos />} />
 				<Route path="share" element={<Share />} />
-			</Route>
-		)
+			</Route>,
+		),
 	);
 
 	return <RouterProvider router={router} />;

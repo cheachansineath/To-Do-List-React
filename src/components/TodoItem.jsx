@@ -13,7 +13,7 @@ function TodoItem({ todo, showOptions = true }) {
 
 	return (
 		<div
-			className={`join flex items-center px-3 py-1.5 gap-x-3 duration-300 text-black 
+			className={`join flex items-center gap-x-3 px-3 py-1.5 text-black duration-300 
 			${
 				todo.checked
 					? "bg-success text-success-content"
@@ -23,7 +23,7 @@ function TodoItem({ todo, showOptions = true }) {
 		>
 			<input
 				type="checkbox"
-				className="cursor-pointer checkbox checkbox-primary checkbox-sm border border-white"
+				className="checkbox checkbox-primary checkbox-sm cursor-pointer border border-white"
 				checked={todo.checked}
 				onChange={() => {
 					toggleTodo(todo.id);
@@ -32,11 +32,11 @@ function TodoItem({ todo, showOptions = true }) {
 			/>
 			<input
 				type="text"
-				className={`border outline-none w-full bg-transparent rounded-lg ml-1 py-1
+				className={`ml-1 w-full rounded-lg border bg-transparent py-1 outline-none
 				${
 					isTodoEditable
-						? "border-black/10 dark:border-white pl-2 cursor-text"
-						: "border-transparent cursor-pointer"
+						? "cursor-text border-black/10 pl-2 dark:border-white"
+						: "cursor-pointer border-transparent"
 				}
 				${todo.checked ? "line-through" : ""}`}
 				value={todoContent}
@@ -52,7 +52,7 @@ function TodoItem({ todo, showOptions = true }) {
 			{showOptions && (
 				<>
 					<button
-						className="btn btn-xs w-8 h-8"
+						className="btn btn-xs h-8 w-8"
 						onClick={() => {
 							if (todo.completed) return;
 
@@ -91,7 +91,7 @@ function TodoItem({ todo, showOptions = true }) {
 						)}
 					</button>
 					<button
-						className="btn btn-xs w-8 h-8"
+						className="btn btn-xs h-8 w-8"
 						onClick={() => deleteTodo(todo.id)}
 					>
 						<svg

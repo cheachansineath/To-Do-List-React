@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { TodoProvider } from "../contexts/Todo.js";
 import TodoItem from "./TodoItem.jsx";
 import Themes from "./Themes.jsx";
+import { toast } from "react-toastify";
 
 function TodoBody({ todos, setTodos }) {
 	const [filteredTodos, setFilteredTodos] = useState(todos);
@@ -14,17 +15,17 @@ function TodoBody({ todos, setTodos }) {
 					todos.filter((todo) =>
 						todo.content
 							.toLowerCase()
-							.includes(searchString.toLowerCase())
-					)
-			  );
+							.includes(searchString.toLowerCase()),
+					),
+				);
 	}, [searchString, todos]);
 	return (
 		<>
-			<div className="flex gap-2 w-full">
+			<div className="flex w-full gap-2">
 				<input
 					type="text"
 					placeholder="Search your todos"
-					className="input input-bordered grow bg-base-100 text-base-content"
+					className="input input-bordered bg-base-100 text-base-content grow"
 					value={searchString}
 					onChange={(e) => {
 						setSearchString(e.target.value);
@@ -45,18 +46,18 @@ function TodoBody({ todos, setTodos }) {
 					</svg>
 				</button>
 			</div>
-			<div className="grid grid-cols-2 gap-3 md:flex md:flex-wrap items-center justify-between mb-3">
+			<div className="mb-3 grid grid-cols-2 items-center justify-between gap-3 md:flex md:flex-wrap">
 				<div className="dropdown">
 					<div
 						tabIndex={0}
 						role="button"
-						className="btn btn-info px-5 text-info-content w-full"
+						className="btn btn-info text-info-content w-full px-5"
 					>
 						Filter
 					</div>
 					<ul
 						tabIndex={0}
-						className="dropdown-content z-[1] menu p-2 mt-2 shadow-md bg-base-100 rounded-box w-40 [&>li]:text-base-content"
+						className="dropdown-content menu bg-base-100 rounded-box [&>li]:text-base-content z-[1] mt-2 w-40 p-2 shadow-md"
 					>
 						<li>
 							<a
@@ -71,7 +72,7 @@ function TodoBody({ todos, setTodos }) {
 							<a
 								onClick={(e) => {
 									setFilteredTodos(
-										todos.filter((todo) => !todo.checked)
+										todos.filter((todo) => !todo.checked),
 									);
 								}}
 							>
@@ -82,7 +83,7 @@ function TodoBody({ todos, setTodos }) {
 							<a
 								onClick={(e) => {
 									setFilteredTodos(
-										todos.filter((todo) => todo.checked)
+										todos.filter((todo) => todo.checked),
 									);
 								}}
 							>
@@ -99,8 +100,12 @@ function TodoBody({ todos, setTodos }) {
 						await navigator.clipboard.writeText(
 							`${
 								window.location.origin
-							}/share?todos=${JSON.stringify(todos)}`
+							}/share?todos=${JSON.stringify(todos)}`,
 						);
+						toast("URL copied successfully", {
+							position: "top-center",
+							type: "success",
+						});
 					}}
 				>
 					Share
@@ -115,11 +120,12 @@ function TodoBody({ todos, setTodos }) {
 					Delete All
 				</div>
 			</div>
-			<div className="flex flex-col gap-y-3 overflow-y-scroll no-scrollbar">
+			<div className="no-scrollbar flex flex-col gap-y-3 overflow-y-scroll">
 				{filteredTodos.map((todo) => (
 					<TodoItem key={todo.id} todo={todo} />
 				))}
 			</div>
+			{/* <ToastContainer /> */}
 		</>
 	);
 }

@@ -97,11 +97,10 @@ function TodoBody({ todos, setTodos }) {
 					className="btn btn-info"
 					onClick={async (e) => {
 						e.preventDefault();
-						await navigator.clipboard.writeText(
-							`${
-								window.location.origin
-							}/share?todos=${JSON.stringify(todos)}`,
-						);
+						const text = `${
+							window.location.origin
+						}/share?todos=${JSON.stringify(todos)}`;
+						await navigator.clipboard.writeText(text);
 						toast("URL copied successfully", {
 							position: "top-center",
 							type: "success",

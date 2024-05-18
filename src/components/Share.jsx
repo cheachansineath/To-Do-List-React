@@ -108,9 +108,15 @@ function Share() {
 				<Themes />
 			</div>
 			<div className="no-scrollbar flex flex-col gap-y-3 overflow-y-scroll">
-				{filteredTodos.map((todo) => (
-					<TodoItem key={todo.id} todo={todo} showOptions={false} />
-				))}
+				{filteredTodos.length > 0 ? (
+					filteredTodos.map((todo) => (
+						<TodoItem key={todo.id} todo={todo} />
+					))
+				) : (
+					<div className="mt-6 w-full text-center text-xl font-semibold">
+						No TODOs Found
+					</div>
+				)}
 			</div>
 		</div>
 	);

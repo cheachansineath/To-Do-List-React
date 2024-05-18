@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from "react";
-import { TodoProvider } from "../contexts/Todo.js";
 import TodoItem from "./TodoItem.jsx";
 import Themes from "./Themes.jsx";
 import { toast } from "react-toastify";
@@ -8,7 +7,7 @@ function TodoBody({ todos, setTodos }) {
 	const [filteredTodos, setFilteredTodos] = useState(todos);
 	const [searchString, setSearchString] = useState("");
 
-	useMemo(() => {
+	const searchTodo = () => {
 		searchString == ""
 			? setFilteredTodos(todos)
 			: setFilteredTodos(
@@ -18,7 +17,10 @@ function TodoBody({ todos, setTodos }) {
 							.includes(searchString.toLowerCase()),
 					),
 				);
-	}, [searchString, todos]);
+	};
+
+	useMemo(searchTodo, [searchString, todos]);
+
 	return (
 		<>
 			<div className="flex w-full gap-2">
@@ -31,7 +33,7 @@ function TodoBody({ todos, setTodos }) {
 						setSearchString(e.target.value);
 					}}
 				/>
-				<button className="btn btn-primary mb-3">
+				<button className="btn btn-primary mb-3" onClick={searchTodo}>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 16 16"
@@ -120,11 +122,16 @@ function TodoBody({ todos, setTodos }) {
 				</div>
 			</div>
 			<div className="no-scrollbar flex flex-col gap-y-3 overflow-y-scroll">
-				{filteredTodos.map((todo) => (
-					<TodoItem key={todo.id} todo={todo} />
-				))}
+				{filteredTodos.length > 0 ? (
+					filteredTodos.map((todo) => (
+						<TodoItem key={todo.id} todo={todo} />
+					))
+				) : (
+					<div className="mt-6 w-full text-center text-xl font-semibold">
+						No TODOs Found
+					</div>
+				)}
 			</div>
-			{/* <ToastContainer /> */}
 		</>
 	);
 }
